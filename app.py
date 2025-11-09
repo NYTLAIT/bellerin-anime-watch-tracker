@@ -9,7 +9,7 @@ app = Flask(__name__)
 API_URL = 'https://api.jikan.moe/v4/anime'
 print(API_URL)
 
-#time cleaner/converter
+#time clean and convert
 def cleaned_duration(duration_str):
     if not duration_str:
         return None
@@ -35,11 +35,17 @@ def cleaned_duration(duration_str):
         return total_minutes
 
 #logic for how long itll take to finish
-def finish(anime):
-    pass
+def estimate_time(anime):
+    mode = request.form.get('mode')
+    if mode == 'time-available'
+
+    else:
+
+    
 
 #later:  Rate Limit (Jikan API has no authentication but but has rate limit of 3 requests per second) ################################## Highly doubt to go over that but you never know
 
+currently_watching = []
 
 #NOTE - HOME PAGE ROUTE - ###########################################################################################################
 @app.route('/', methods=["GET", "POST"])
@@ -70,30 +76,34 @@ def home():
                 anime_suggestions.append(anime_info)
             
             return render_template('index.html', anime_suggestions=anime_suggestions)
+            #passed onto SUGGESTED ANIME/#query-suggestions
             
         else:
-            return render_template('index.html', currently_watching=currently_watching)
+            defaultQuery = 'Search for an Anime!'
+            return render_template('index.html', currently_watching=currently_watching, defaultQuery=defaultQuery)
 
     else:
-        duration_minute = cleaned_duration(request.form.get('duration'))
-        print('------duration_minute:', duration_minute)
+        if query-suggestions-indiv:
+            duration_minute = cleaned_duration(request.form.get('duration1'))
+            print('------duration_minute:', duration_minute)
 
-        anime_info = {
-            'title': request.form.get('title'),
-            'image': request.form.get('image'),
-            'episodes': request.form.get('episodes'),
-            'duration': request.form.get('duration'),
-            'MALurl': request.form.get('MALurl'),
-            'year': request.form.get('year'),
-            'demographics': request.form.get('demographics'),
-            #'genres': request.form.get('genres')
-                #dont know how to turn genres into list again yet
-        }
-        print(anime_info)
+            anime_info = {
+                'title': request.form.get('title1'),
+                'image': request.form.get('image1'),
+                'type': request.form.get('type1'),
+                'episodes': request.form.get('episodes1'),
+                'duration': request.form.get('duration1'),
+                'MALurl': request.form.get('MALurl1'),
+                'status': request.form.get('status1')
+                'year': request.form.get('year1'),
+                'genres': request.form.get('genres').split(', '),
+                'demographics': request.form.get('demographics1')
+            }
+            print(anime_info)
 
-        currently_watching.append(anime_info)
-        print(currently_watching)
-        return redirect(url_for('home'))
+            currently_watching.append(anime_info)
+            print(currently_watching)
+            return redirect(url_for('home'))
 
 # TODO watched-anime #################################################################################################################
 

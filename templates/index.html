@@ -18,18 +18,21 @@
 
 <!-- RIGHT MARGIN/ADD ANIME -->
                 <section id="initial-estimate">
-    <!-- CONFIRM ANIME TO ADD -->
-                    <form id="confirmed-anime" method="POST">
-                        <fieldset hidden>
-                            <input type="hidden" name="title" value="{{}}">
-                            <input type="hidden" name="image" value="{{}}">
-                            <input type="hidden" name="episodes" value="{{}}">
-                            <input type="hidden" name="duration" value="{{}}">
-                            <input type="hidden" name="MALurl" value="{{}}">
-                            <input type="hidden" name="year" value="{{}}">
-                            <input type="hidden" name="demographics" value="{{}}">
-                            <input type="hidden" name="genres" value="{{}}">
+    <!-- CONFIRM ANIME TO ADD |anime-info; hidden|anime-desc; shown|estimate-time; shown as it goes-->
+                    <form id="confirmed-anime" method="POST" hidden>
+                        <fieldset id="anime-info" hidden>
+                            <input type="hidden" name="title" value="{{title}}">
+                            <input type="hidden" name="image" value="{{image}}">
+                            <input type="hidden" name="type" value="{{type}}">
+                            <input type="hidden" name="episodes" value="{{episodes}}">
+                            <input type="hidden" name="duration" value="{{duration}}">
+                            <input type="hidden" name="MALurl" value="{{MALurl}}">
+                            <input type="hidden" name="status" value="{{status}}">
+                            <input type="hidden" name="year" value="{{year}}">
+                            <input type="hidden" name="genres" value="{{genres}}">
+                            <input type="hidden" name="demographics" value="{{demographics}}">
                         </fieldset>
+
                         <div id="confirmed-anime-desc">
                             <img src="{{}}">
                                 <ul>
@@ -40,39 +43,59 @@
                                     <li><a href="{{}}" target="_blank">MyAnimeList</a></li>
                                 </ul>
                         </div>
+
                         <fieldset id="estimate-time">
-                            <select name="mode">
-                                <option value="time-available"></option>
-                                <option value="time-goal"></option>
-                            </select>
-                            <
+                            <label for="mode">Select how to Estimate:
+                                <select id="mode" name="mode">
+                                    <option value="time-available">By Time Available</option>
+                                    <option value="time-goal">By Time Goal</option>
+                                </select>
+                            </label>
+                            <label for="time-available-input">Input Time Available Per Day: 
+                                <input id="time-available-input" type="time" name="time-available-hour">
+                            </label>
+                            <label for="time-goal-input" hidden>
+                                <select id="time-goal-input" name="time-goal-input" hidden>
+                                    <option value="episode-goal">Episode</option>
+                                    <option value="day-goal">Day</option>
+                                </select>
+                            </label>
+                            <label>
+                            </label>
                         </fieldset>
 
                     </form>
                 </section>
     <!-- QUERY BAR -->
+        <!-- make sure default text works -->
                 <section id="add-anime">
                     <form id="query" method="GET" action="/">
-                        <label for="form-title">
-                            <input id="form-title" type="text" name="name">
+                        <label for="seach-bar">
+                            <input id="search-bar" type="text" name="name" value="{{defaultQuery}}">
                         </label>
                         <button type="submit" name="Search">Search</button>
                     </form>
-    <!-- SUGGESTED ANIME -->
+    <!-- 1. SUGGESTED ANIME-->
                     <section id="query-suggestions">
-                        <!-- NEEDS WORKING ON BUT JUST NEED TO GET IT ON THERE FOR NOW -->
                         {% for anime in anime_suggestions %}
-                            <form id="selected-anime" method="POST">
-
-                                <div id="suggested-animes">
+                            <form id="query-suggestions-indiv" method="POST">
+                                <input type="hidden" name="title1" value="{{anime.title}}">
+                                <input type="hidden" name="image1" value="{{anime.image}}">
+                                <input type="hidden" name="type1" value="{{anime.type}}">
+                                <input type="hidden" name="episodes1" value="{{anime.episodes}}">
+                                <input type="hidden" name="duration1" value="{{anime.duration}}">
+                                <input type="hidden" name="MALurl1" value="{{anime.MALurl}}">
+                                <input type="hidden" name="status1" value="{{anime.status}}">
+                                <input type="hidden" name="year1" value="{{anime.year}}">
+                                <input type="hidden" name="genres1" value="{{anime.genres}}">
+                                <input type="hidden" name="demographics1" value="{{anime.demographics}}">
+                                <div id="query-suggestions-indiv-shown">
                                     <img src="{{anime.image}}">
                                     <ul>
                                         <li>{{anime.title}}</li>
                                         <li>{{anime.type}} | {{anime.year}}</li>
-                                        <li>{{anime.episodes}} | {{anime.duration}}</li>
-                                        <li>{{anime.demographics}} | {{anime.genres | join(', ')}}</li>
                                         <li><a href="{{anime.MALurl}}" target="_blank">MyAnimeList</a></li>
-                                        <button type="submmit">+ Add</button>
+                                        <button type="submmit">Add</button>
                                     </ul>
                                 </div>
                             </form>

@@ -1,18 +1,18 @@
-html, body {
+/* html, body {
     height: 100vh;
     margin: 0;
 }
 
 header {
     box-sizing: border-box;
-}
+} */
 
 /* RIGHT SECTION */
-#add-anime {
+/* #add-anime {
     max-width: 20%;
 }
 #query {
-    
-}
+    width: auto;
+} */
 
 /* END RIGHT SECTION */
