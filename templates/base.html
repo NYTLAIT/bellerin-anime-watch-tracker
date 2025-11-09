@@ -14,13 +14,14 @@
     <body>
         <header>
             <!-- NAVBAR -->
-            <nav class="navbar bg-body-tertiary py-0">
+            <nav class="navbar sticky-top bg-body-tertiary py-0">
                 <div class="container-fluid">
                     <!-- BRAND -->
                     <a href="{{ url_for('home') }}" class="navbar-brand"><h1 class="my-0">Bellerin</h1></a>
 
                     <!-- PROFILE DROPDOWN -->
                     <div class="dropdown nav-item">
+
                         <!-- "PFP-BUTTON" -->
                         <button class="dropdown-toggle d-flex align-items-center" 
                             type="button" style="background: none; border: none;"
@@ -29,8 +30,9 @@
                             <!-- TODO: Gotta get the pfp working -->
                             <img src="{{ url_for('static', filename='images/FernPFP.jpg') }}" 
                                 alt="Profile Picture" class="rounded-circle" width="32" height="32">
-                            <span class="d-none d-md-inline ms-2">{{username}}</spam>
+                            <span class="d-none d-md-inline ms-2">{{username}}</span>
                         </button>
+
                         <!-- PFP-MENU -->
                         <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="dark">
                             <li><a href="account.html" class="dropdown-item">Manage Account</a></li>
