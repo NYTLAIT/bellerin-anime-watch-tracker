@@ -9,26 +9,35 @@
             rel="stylesheet" 
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
             crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
     <body>
         <header>
             <!-- NAVBAR -->
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar bg-body-tertiary py-0">
                 <div class="container-fluid">
                     <!-- BRAND -->
-                    <a href="home.html" class="navbar-brand">Bellerin</a>
-                    <!-- ACCOUNT PFP AND TOGGLER -->
-                    <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#navbarToggleContent"
-                        Access
-                        aria-controls="navbarToggleContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a href="{{ url_for('home') }}" class="navbar-brand"><h1 class="my-0">Bellerin</h1></a>
 
-                    </button>
-                    <!-- NAVBAR TOGGLE -->
-                    <div id="navbarToggleContent" class="navbar-collapse">
-
+                    <!-- PROFILE DROPDOWN -->
+                    <div class="dropdown nav-item">
+                        <!-- "PFP-BUTTON" -->
+                        <button class="dropdown-toggle d-flex align-items-center" 
+                            type="button" style="background: none; border: none;"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" aria-label="Toggle More Dropdown">
+                            <!-- TODO: Gotta get the pfp working -->
+                            <img src="{{ url_for('static', filename='images/FernPFP.jpg') }}" 
+                                alt="Profile Picture" class="rounded-circle" width="32" height="32">
+                            <span class="d-none d-md-inline ms-2">{{username}}</spam>
+                        </button>
+                        <!-- PFP-MENU -->
+                        <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="dark">
+                            <li><a href="account.html" class="dropdown-item">Manage Account</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="#" class="dropdown-item text-danger">Log Out</a></li>
+                        </ul>
                     </div>
-            
                 </div>
             </nav>
         </header>
